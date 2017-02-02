@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/bash
 
 DOTFILES="$HOME/.files"
 BACKUPDIR="$DOTFILES/backup"
@@ -37,6 +37,6 @@ backup_and_install "vim/global.vim" "$HOME/.vim/global.vim" "global.vim"
 backup_and_install "vim/dein-plugins.vim" "$HOME/.vim/dein-plugins.vim" "dein-plugins.vim"
 
 # i3
-backup_and_install "i3config" "$HOME/.i3/config" "i3config"
+backup_and_install "i3config" "$HOME/.config/i3/config" "i3config"
 
 # TODO: termite
