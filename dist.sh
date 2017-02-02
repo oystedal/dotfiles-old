@@ -31,6 +31,7 @@ function backup_and_install {
 
 # zsh
 backup_and_install "zshrc" "$HOME/.zshrc" "zshrc"
+backup_and_install "maestro.zsh-theme" "$HOME/.oh-my-zsh/themes/maestro.zsh-theme" "maestro.zsh-theme"
 
 # vim
 backup_and_install "vim/global.vim" "$HOME/.vim/global.vim" "global.vim"
