@@ -1,5 +1,3 @@
-" source ~/.vim/vundle-plugins.vim
-" source ~/.vim/plug-plugins.vim
 source ~/.vim/dein-plugins.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -28,6 +26,28 @@ set nojoinspaces " No double space bs
 " UI style options
 " colorscheme desert
 " set guifont=Inconsolata\ 13
+
+" Gives us the :Lint command for Go
+" Golint is available by executing `go get github.com/golang/lint/golint`
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+
+" let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
+
+" Stop ycm from nagging about configs
+let g:ycm_confirm_extra_conf = 0
+
+nmap <F6> :LargerFont<CR>
+nmap <F5> :SmallerFont<CR>
 
 " GUI style options
 " Essentially remove everything
@@ -84,11 +104,11 @@ vnoremap <C-S-k> :m-2<CR>gv=gv
 
 let mapleader = "," " use , as leader
 
-" refresh ctags
-nmap <Leader>x :execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."<CR>
-
 " toggle fullscreen with Goyo
-nmap <Leader>f :Goyo<CR>
+" nmap <Leader>f :Goyo<CR>
+
+" open NERDTree
+nmap <Leader>n :NERDTree<CR>
 
 " open ctrlp
 nmap <Leader>m :CtrlPMRUFiles<CR>
@@ -105,14 +125,7 @@ nmap <Leader>rs :execute "source " . $MYVIMRC<CR>
 nmap <Leader>rg :execute "edit " . $HOME . "/.vim/global.vim"<CR>
 nmap <Leader>rp :execute "edit " . $HOME . "/.vim/plugins.vim"<CR>
 
-" nmap <Leader>n :bn<CR>
-" nmap <Leader>b :bp<CR>
-" nnoremap <Leader>t :call ToggleAutoWrap()<CR>
-
-"imap <Leader>o // OYSTEDAL
-"nmap <Leader>hn :GitGutterNextHunk<CR>
-"nmap <Leader>y "+y
-"vmap <Leader>y "+y
+nmap <Leader>hn :GitGutterNextHunk<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Commands & Functions                            "
@@ -214,7 +227,7 @@ let g:ctrlp_cmd = 'CtrlPBuffer'
 nmap <C-f> :CtrlP<CR>
 
 " Goyo settings
-let g:goyo_width=100
+" let g:goyo_width=100
 
 " vim-go(?)
 highlight! goCoverageNormalText gui=NONE
@@ -229,46 +242,3 @@ hi link ifdefInBadPreCondit PreCondit
 hi link ifdefInUndefinedComment ifdefUndefined  
 hi link ifdefPreCondit1 PreCondit               
 hi link ifdefElseEndifInBracketError Special    
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Old stuff                                  "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Tag List options
-" let g:Tlist_Use_Right_Window=1
-
-" DelimitMate options
-" let g:delimitMate_expand_cr=1
-
-" Use nosetest(2) as compiler, so that we can use make to run tests
-" autocmd BufNewFile,BufRead *.py compiler nose
-" let g:makegreen_stay_on_file = 1
-
-" let g:Tex_ViewRule_pdf='evince'
-
-" autocmd BufNewFile,BufRead *.maude set ft=maude
-" autocmd BufNewFile,BufRead *.cup set ft=cup
-" autocmd BufNewFile,BufRead *.tex set ft=tex
-
-" The current file time
-" function! FileTime()
-"   let ext=tolower(expand("%:e"))
-"   let fname=tolower(expand('%<'))
-"   let filename=fname . '.' . ext
-"   let msg=" "
-"   let msg=msg." ".strftime("(%d. %b %y %H:%M)",getftime(filename))
-"   return msg
-" endfunction
-
-" The current system time, displayed to the right
-" function! CurTime()
-"   let ftime=""
-"   let ftime=ftime." ".strftime("%d. %b %y %H:%M")
-"   return ftime
-" endfunction
-
-" Template loading
-" function! LoadTemplate()
-"     silent! 0r ~/.vim/templates/template.%:e
-" endfunction
-" autocmd! BufNewFile * call LoadTemplate()
