@@ -115,17 +115,24 @@ nmap <Leader>m :CtrlPMRUFiles<CR>
 nmap <Leader>o :CtrlPCurWD<CR>
 
 " diff mappings
-vmap <Leader>dp :diffput<CR>:diffupdate<CR>
-vmap <Leader>dg :diffget<CR>:diffupdate<CR>
-vmap <Leader>du :diffupdate<CR>
+" vmap <Leader>dp :diffput<CR>:diffupdate<CR>
+" vmap <Leader>dg :diffget<CR>:diffupdate<CR>
+" vmap <Leader>du :diffupdate<CR>
 
 " vimrc et al. mappings
 nmap <Leader>re :execute "edit " . $MYVIMRC<CR>
-nmap <Leader>rs :execute "source " . $MYVIMRC<CR>
+nmap <Leader>rS :execute "source " . $MYVIMRC<CR>
 nmap <Leader>rg :execute "edit " . $HOME . "/.vim/global.vim"<CR>
 nmap <Leader>rp :execute "edit " . $HOME . "/.vim/plugins.vim"<CR>
 
+" gitgutter
 nmap <Leader>hn :GitGutterNextHunk<CR>
+
+" denite
+nmap <Leader>do :Denite outline<CR>
+
+" nmap <Leader>n :bn<CR>
+" nmap <Leader>b :bp<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                            Commands & Functions                            "
@@ -158,11 +165,16 @@ function! ListLeaders()
      silent! new
      silent! put! a
      silent! g/^s*$/d
-     silent! %s/^.*,//
-     silent! normal ggVg
+     silent! %s/^[^,]*,//
+     silent! ggVG
      silent! sort
      silent! let lines = getline(1,"$")
-endfunction
+     silent! setlocal buftype=nofile
+     silent! setlocal bufhidden=hide
+     silent! setlocal noswapfile
+     silent! setlocal nobuflisted
+     silent! nnoremap <buffer> q :q<CR>
+ endfunction
 
 function! ToggleAutoWrap()
     let l:fowrap = stridx(&formatoptions, "a")

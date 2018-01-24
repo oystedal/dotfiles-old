@@ -13,7 +13,6 @@ if dein#load_state('~/.vim/dein')
     " Required:
     call dein#add('~/.vim/dein/repos/github.com/Shougo/dein.vim')
 
-    call dein#add('tpope/vim-dispatch')
     call dein#add('justinmk/vim-syntax-extra')
 
     " Stuff stolen from github.com/monokrome
@@ -23,14 +22,17 @@ if dein#load_state('~/.vim/dein')
     call dein#add('neochrome/todo.vim') " A todo list for Vim.
     call dein#add('tpope/vim-commentary') " Comment and uncomment lines with 'gc' verbs
     call dein#add('tpope/vim-sensible') " Somewhat sensible defaults for modernizing Vim a bit by default.
-    call dein#add('tpope/vim-speeddating') " Manages dates more easily by adding support for them to CTRL-A/CTRL-X
+    " call dein#add('tpope/vim-speeddating') " Manages dates more easily by adding support for them to CTRL-A/CTRL-X
     call dein#add('vim-scripts/TaskList.vim') " Provides lists of tasks (TODO, FIXME, etc) related to the current buffer
-    call dein#add('taxilian/a.vim') " Commands for jumping between alternate related files
+    " call dein#add('taxilian/a.vim') " Commands for jumping between alternate related files
 
     call dein#add('tpope/vim-surround')
     call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-dispatch')
     call dein#add('scrooloose/syntastic')
     call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTree'})
+
+    " call dein#add('chrisjohnson/vim-foldfunctions')
 
     call dein#add('SirVer/ultisnips')
     call dein#add('honza/vim-snippets', {'depends': ['ultisnips']})
@@ -41,6 +43,7 @@ if dein#load_state('~/.vim/dein')
 
     call dein#add('bling/vim-airline')
     call dein#add('godlygeek/tabular', {'on_cmd': 'Tabularize'})
+
     call dein#add('Valloric/YouCompleteMe', { 'on_ft': ['c', 'cpp', 'go', 'rust'], 'build': 'python2 ./install.py --clang-completer --gocode-completer --racer-completer --tern-completer'})
 
     call dein#add('kien/ctrlp.vim', {'on_cmd': ['CtrlP', 'CtrlPMRUFiles', 'CtrlPCurrWD']})
@@ -48,13 +51,17 @@ if dein#load_state('~/.vim/dein')
     call dein#add('airblade/vim-gitgutter')
     " call dein#add('junegunn/goyo.vim', {'on_cmd': 'Goyo'})
 
+    call dein#add('lyuts/vim-rtags')
+
     call dein#add('fatih/vim-go', {'on_ft': ['go']})
 
     call dein#add('rust-lang/rust.vim', {'on_ft': ['rust']})
 
     " These plugins have no plugin/ directory, no need to be lazy
-    call dein#add('suan/vim-instant-markdown')
-    call dein#add('tpope/vim-markdown')
+    " call dein#add('suan/vim-instant-markdown')
+    " call dein#add('tpope/vim-markdown')
+    " call dein#add('suan/vim-instant-markdown', {'on_ft': ['markdown']})
+    " call dein#add('tpope/vim-markdown', {'on_ft': ['markdown']})
 
     " Colorschemes
     call dein#add('chriskempson/base16-vim')
