@@ -40,4 +40,5 @@ backup_and_install "vim/dein-plugins.vim" "$HOME/.vim/dein-plugins.vim" "dein-pl
 # i3
 backup_and_install "i3config" "$HOME/.config/i3/config" "i3config"
 
-# TODO: termite
+# termite
+backup_and_install "termite-config" "$HOME/.config/termite/config" "termite-config"
